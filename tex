@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro to MOOWR</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Open Sans", sans-serif;
+        }
+
+        .main-container {
+            display: flex;
+            background: linear-gradient(357deg, #25006e 0%, rgb(22, 0, 66) 100%);
+            flex: none;
+            height: 375px;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+        }
+
+        #logo {
+            width: 145px;
+            height: 32px;
+        }
+
+        .left-main {
+            width: 50%;
+            margin-left: 20px;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            gap: 54px;
+        }
+
+        .left-main-div {
+            display: flex;
+            justify-content: start;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .left-main-div h2 {
+            font-size: 32px;
+            font-weight: 600;
+            color: rgb(255, 255, 255);
+            font-optical-sizing: auto;
+            font-style: normal;
+            font-variation-settings:
+                "wdth" 100;
+        }
+
+        .left-main-div p {
+            letter-spacing: -0.02em;
+            line-height: 1.4em;
+            color: rgb(219, 219, 219);
+            width: 581px;
+            font-weight: 400;
+            font-size: 16px;
+        }
+
+        .right-main {
+            width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: end;
+        }
+
+        .right-main img {
+            width: 342px;
+            height: 335px;
+            margin-right: 60px;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 900px;
+            position: relative;
+        }
+
+        .modal-header {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .modal-body {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+            overflow-y: auto;
+            max-height: 500px;
+            padding-right: 10px; /* Prevents content from being hidden behind scrollbar */
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .modal-footer button {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-left: 10px;
+        }
+
+        .modal-footer button:hover {
+            background-color: #45a049;
+        }
+
+        .modal-footer .decline-btn {
+            background-color: #f44336;
+        }
+
+        .modal-footer .decline-btn:hover {
+            background-color: #e53935;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Terms and Conditions Modal -->
+    <div id="termsModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                Terms of Use and Disclaimers
+            </div>
+            <div class="modal-body">
+                <p>By visiting this website, you agree to abide by the terms of use and disclaimers outlined herein. If you do not agree, you must immediately cease using this website.</p>
+                
+                <h3>1. Proprietary Rights</h3>
+                <p>1.1. This website and the services available on the website are the proprietary property of Optitax Consulting LLP, a Limited Liability Partnership registered in India.</p>
+                
+                <h3>2. General Terms</h3>
+                <p>2.1. All materials contained on this website are protected by applicable copyright and trademark laws. Unauthorized use of these materials is strictly prohibited and will be prosecuted to the fullest extent of the law.</p>
+                <p>2.2. Optitax allows the use of this website and its materials on a free-of-cost basis to the public.</p>
+                
+                <h3>3. Use License</h3>
+                <p>3.1. This website provides a facility to use the product decision matrix and other products fully developed by Optitax.</p>
+                <p>3.2. Permission is granted to print the report generated by the decision matrix solely for the purpose of evaluating a business proposal. This license is granted free of charge and does not constitute a transfer of title. Under this license, you are expressly prohibited from:</p>
+                <ul>
+                    <li>a. Attempting to copy, decompile, or reverse engineer any software contained on Optitax's website;</li>
+                    <li>b. Removing any copyright or other proprietary notations from the decision matrix;</li>
+                    <li>c. Attempting to access https://optitaxs.com or the decision matrix by any means other than standard browser applications;</li>
+                    <li>d. Transferring or mirroring https://optitaxs.com or the decision matrix to another server or website.</li>
+                </ul>
+                
+                <h3>4. Disclaimer</h3>
+                <p>4.1. The materials, including the Decision Matrix Report on Optitax's website, are provided on an 'as is' basis, without any guarantees or warranties of any kind.</p>
+                <p>4.2. Optitax expressly disclaims all warranties, whether express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, and non-infringement of intellectual property rights or other violations of rights.</p>
+                <p>4.3. Optitax makes no representations or warranties regarding the accuracy, likely results, or reliability of the use of the materials on its website or on any websites linked to this site.</p>
+                <p>4.4. Optitax does not guarantee the correctness, accuracy, or reliability of any data uploaded by users on its website. Users are solely responsible for the content they upload.</p>
+                
+                <h3>5. Accuracy of Materials</h3>
+                <p>5.1. The materials appearing on https://optitaxs.com or any linked sites may include technical, typographical, or photographic errors. Optitax does not warrant that any of the materials are accurate, complete, or current.</p>
+                <p>5.2. Optitax reserves the right to make changes to the materials contained on https://optitaxs.com at any time without notice. Optitax does not commit to updating the materials.</p>
+                
+                <h3>6. Liability</h3>
+                <p>6.1. Under no circumstances shall Optitax or its suppliers be liable for any damages (including, but not limited to, damages for loss of data or profit, or due to business interruption) arising from the use or inability to use the materials on Optitax's website, even if Optitax or an authorized representative has been notified orally or in writing of the possibility of such damages.</p>
+                <p>6.2. Some jurisdictions do not allow limitations on implied warranties or the exclusion or limitation of liability for consequential or incidental damages; these limitations may not apply to you. In such jurisdictions, Optitax's liability is limited to the greatest extent permitted by law.</p>
+                
+                <h3>7. Privacy</h3>
+                <p>7.1. Optitax is committed to protecting your privacy. All personal information collected through this website will be handled in accordance with our Privacy Policy, which complies with relevant data protection and privacy laws.</p>
+                <p>7.2. By using this website, you consent to the collection, use, and storage of your personal information as described in our Privacy Policy.</p>
+                
+                <h3>8. Governing Law</h3>
+                <p>8.1. These terms and conditions are governed by and construed in accordance with the laws of the State of Maharashtra, India.</p>
+                <p>8.2. Any disputes arising out of or relating to these terms and conditions, the use of Optitax's website, or the products or services provided shall be resolved exclusively in the courts located in Pune, Maharashtra, India. By using this website, you agree to submit to the jurisdiction of these courts for such purposes.</p>
+                
+                <h3>9. Severability</h3>
+                <p>9.1. If any provision of these terms is found to be unenforceable or invalid, the remaining provisions will continue to be in full force and effect.</p>
+                
+                <h3>10. Entire Agreement</h3>
+                <p>10.1. These terms constitute the entire agreement between you and Optitax regarding the use of the website and supersede all prior agreements and understandings, whether written or oral, regarding such use.</p>
+                
+                <h3>11. Changes to Terms of Use</h3>
+                <p>11.1. Optitax reserves the right to revise these terms of use at any time without notice. By using this website, you agree to be bound by the current version of these terms of use.</p>
+                
+                <p>12. By accessing or using Optitax's website, you acknowledge that you have read, understood, and agree to be bound by these terms and conditions.</p>
+                <p>If you do not agree with these terms, you must immediately cease using or accessing this site.</p>
+            </div>
+            <div class="modal-footer">
+                <button id="acceptBtn">Accept</button>
+                <button id="declineBtn" class="decline-btn">Decline</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="left-main">
+            <div class="left-main-div">
+                <h2>Welcome to Our Service</h2>
+                <p>Here you can explore various tools and resources to enhance your business operations. Please ensure that you have read and accepted our terms of use to proceed.</p>
+            </div>
+        </div>
+        <div class="right-main">
+            <img src="path-to-your-image.jpg" alt="Visual representation">
+        </div>
+    </div>
+
+    <script>
+        // Get modal element
+        var modal = document.getElementById("termsModal");
+        var acceptBtn = document.getElementById("acceptBtn");
+        var declineBtn = document.getElementById("declineBtn");
+        var closeBtn = document.getElementsByClassName("close")[0];
+
+        // Display modal on page load
+        window.onload = function () {
+            modal.style.display = "block";
+        }
+
+        // Close modal when user clicks on <span> (x)
+        closeBtn.onclick = function () {
+            modal.style.display = "none";
+            window.location.href = "https://your-redirect-url.com";
+        }
+
+        // Close modal when user clicks 'Accept'
+        acceptBtn.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // Redirect to previous page when user clicks 'Decline'
+        declineBtn.onclick = function () {
+            window.location.href = "https://your-redirect-url.com";
+        }
+
+        // Close modal if user clicks outside of modal content
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                window.location.href = "https://your-redirect-url.com";
+            }
+        }
+    </script>
+</body>
+
+</html>

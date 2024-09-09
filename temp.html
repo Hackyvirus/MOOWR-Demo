@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Column Addition and Removal</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #2b55d3;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .remove-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            cursor: pointer;
+        }
+
+        input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #2b55d3;
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+            outline: none;
+            background-color: white;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        input[type="checkbox"]:checked {
+            background-color: #2b55d3;
+            border-color: #2b55d3;
+        }
+
+        input[type="checkbox"]:checked::after {
+            content: "\2714";
+            font-size: 16px;
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        input[type="checkbox"]:hover {
+            border-color: #1a3b8b;
+        }
+    </style>
+</head>
+<body>
+    <table id="goodsTable">
+        <thead>
+            <tr>
+                <th>Percentage</th>
+                <th>Value</th>
+                <th>AIDC</th>
+                <th id="addColumn">+</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>2.5%</td>
+                <td><input type="checkbox"><input type="text" disabled></td>
+                <td><input type="checkbox"><input type="text" disabled></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>5.0%</td>
+                <td><input type="checkbox"><input type="text" disabled></td>
+                <td><input type="checkbox"><input type="text" disabled></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>10%</td>
+                <td><input type="checkbox"><input type="text" disabled></td>
+                <td><input type="checkbox"><input type="text" disabled></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>15%</td>
+                <td><input type="checkbox"><input type="text" disabled></td>
+                <td><input type="checkbox"><input type="text" disabled></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>20%</td>
+                <td><input type="checkbox"><input type="text" disabled></td>
+                <td><input type="checkbox"><input type="text" disabled></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>25%</td>
+                <td><input type="checkbox"><input type="text" disabled></td>
+                <td><input type="checkbox"><input type="text" disabled></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Other</td>
+                <td><input type="checkbox"><input type="text" disabled></td>
+                <td><input type="checkbox"><input type="text" disabled></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        const addColumnBtn = document.getElementById('addColumn');
+        const table = document.getElementById('goodsTable');
+        let columnCount = 3; // Initially we have 3 columns before adding new ones
+
+        // Add a new column before the "+" column
+        addColumnBtn.addEventListener('click', function () {
+            const rows = table.rows;
+
+            // Loop through each row and add a new cell before the last column
+            for (let i = 0; i < rows.length; i++) {
+                const cell = rows[i].insertCell(columnCount);
+                if (i === 0) {
+                    // For the header row, add a remove button
+                    const removeBtn = document.createElement('button');
+                    removeBtn.className = 'remove-btn';
+                    removeBtn.textContent = '-';
+                    removeBtn.addEventListener('click', function () {
+                        removeColumn(columnCount);
+                    });
+                    cell.appendChild(removeBtn);
+                } else {
+                    // For other rows, add checkboxes and inputs
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.disabled = true; // Disable input initially
+
+                    checkbox.addEventListener('change', function () {
+                        input.disabled = !checkbox.checked; // Enable input if checkbox is checked
+                    });
+
+                    cell.appendChild(checkbox);
+                    cell.appendChild(input);
+                }
+            }
+
+            columnCount++;
+        });
+
+        // Remove a specific column except the last "+"
+        function removeColumn(index) {
+            if (index >= columnCount - 1) return; // Do not allow removal of "+" column
+
+            const rows = table.rows;
+            for (let i = 0; i < rows.length; i++) {
+                rows[i].deleteCell(index);
+            }
+
+            columnCount--;
+        }
+    </script>
+</body>
+</html>

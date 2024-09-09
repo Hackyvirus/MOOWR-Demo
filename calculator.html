@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duty Saving Calculator - MOOWR Scheme</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <style>
+        /* Download Button Styling */
+        #report-download-btn {
+            background-color: #5e00ff;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            margin: auto;
+            transition: background-color 0.3s ease;
+        }
+
+        #report-download-btn:hover {
+            background-color: #4000b2;
+        }
+
+        /* Modal Container */
+        .modal-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        /* Modal Box Styling */
+        .modal-box {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 600px;
+            margin: 10% auto;
+            position: relative;
+            animation: slideUp 0.6s ease-in-out;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Modal Header */
+        .modal-title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Close Button */
+        .close-icon {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            color: #999;
+            cursor: pointer;
+        }
+
+        .close-icon:hover {
+            color: #333;
+        }
+
+        /* Form Styling */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        .form-checkbox {
+            margin-right: 8px;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            background-color: #5e00ff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background-color: #4000b2;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav>
+        <h2>Duty Saving Calculator - MOOWR Scheme</h2>
+    </nav>
+    <!-- Hero Section  -->
+    <div class="hero" data-aos="fade-up">
+        <div class="left" data-aos="fade-right">
+            <h2>Steps to use Calculator</h2>
+            <div class="left-bottom">
+                <ol type="1">
+                    <li>Kindly note that the information pertaining to capital goods and raw material needs to be filled
+                        in separate tables below </li>
+                    <li>Once you go to the table, mention the CIF value in the respective column based on the applicable
+                        BCD rate</li>
+                </ol>
+            </div>
+
+        </div>
+        <div class="right">
+            <img src="img/12.avif" data-aos="fade-left" alt="Calculator img">
+        </div>
+    </div>
+    <!-- Duty Saving Calculator - MOOWR Scheme -->
+    <div id="title" data-aos="zoom-in">
+        <p>Duty Saving Calculator - MOOWR Scheme</p>
+    </div>
+    <!-- Capital Goods -->
+    <div id="Calculator-container">
+        <!-- box 1 -->
+        <h2 id="Gross" class="capital-g">Capital Goods</h2>
+        <div class="copital-goods-calculator" data-aos="fade-up">
+            <div class="first-cap-div" data-aos="fade-up">
+                <p>Import value and Duty of customs</p>
+                <div class="btns"><a href="#Gross">
+                        <div class="btn1 active-btn ">Gross</div>
+                    </a><a href="#indi-g">
+                        <div class="btn2 inactive-btn">Individual</div>
+                    </a></div>
+            </div>
+            <div>
+                <div class="second-cap-div" data-aos="fade-up">
+                    <div class="second-left">
+                        <div class="fifty">
+                            <p>Gross value of import (CIF)</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"
+                                style="user-select: none; width: 15px; height: 15px; display: inline-block; fill: rgb(135, 135, 135); color: rgb(135, 135, 135); flex-shrink: 0;"
+                                focusable="false" color="rgb(135, 135, 135)">
+                                <g color="rgb(135, 135, 135)" weight="regular">
+                                    <path
+                                        d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a12,12,0,1,1,12,12A12,12,0,0,1,112,84Z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </div>
+                        <input type="text" name="" placeholder="1,00,00,000" id="second-left-input">
+                    </div>
+                    <div class="second-right">
+                        <div class="fifty">
+                            <p>Gross value of import (CIF)</p> <svg xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 256 256"
+                                style="user-select: none; width: 15px; height: 15px; display: inline-block; fill: rgb(135, 135, 135); color: rgb(135, 135, 135); flex-shrink: 0;"
+                                focusable="false" color="rgb(135, 135, 135)">
+                                <g color="rgb(135, 135, 135)" weight="regular">
+                                    <path
+                                        d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a12,12,0,1,1,12,12A12,12,0,0,1,112,84Z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </div> <input type="text" name="" placeholder="1,00,00,000" id="second-right-input">
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <div class="third-cap-div" data-aos="fade-up">
+                    <div class="third-left">
+                        <div class="fifty">
+                            <p>Gross value of AIDC</p> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"
+                                style="user-select: none; width: 15px; height: 15px; display: inline-block; fill: rgb(135, 135, 135); color: rgb(135, 135, 135); flex-shrink: 0;"
+                                focusable="false" color="rgb(135, 135, 135)">
+                                <g color="rgb(135, 135, 135)" weight="regular">
+                                    <path
+                                        d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a12,12,0,1,1,12,12A12,12,0,0,1,112,84Z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </div> <input type="text" name="" placeholder="1,00,00,000" id="third-left-input">
+                    </div>
+                    <div class="third-right">
+                        <div class="fifty">
+                            <p>Gross value of ADD </p> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"
+                                style="user-select: none; width: 15px; height: 15px; display: inline-block; fill: rgb(135, 135, 135); color: rgb(135, 135, 135); flex-shrink: 0;"
+                                focusable="false" color="rgb(135, 135, 135)">
+                                <g color="rgb(135, 135, 135)" weight="regular">
+                                    <path
+                                        d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a12,12,0,1,1,12,12A12,12,0,0,1,112,84Z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </div> <input type="text" name="" placeholder="1,00,00,000" id="third-right-input">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="fourth-cap-div" data-aos="fade-up">
+                    <div class="fourth-left">
+                        <div class="fifty">
+                            <p>Gross value of IGST</p> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"
+                                style="user-select: none; width: 15px; height: 15px; display: inline-block; fill: rgb(135, 135, 135); color: rgb(135, 135, 135); flex-shrink: 0;"
+                                focusable="false" color="rgb(135, 135, 135)">
+                                <g color="rgb(135, 135, 135)" weight="regular">
+                                    <path
+                                        d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a12,12,0,1,1,12,12A12,12,0,0,1,112,84Z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </div> <input type="text" name="" placeholder="1,00,00,000" id="fourth-left-input">
+                    </div>
+                    <div class="fourth-right">
+                        <div class="fifty">
+                            <p>Intended period of use</p> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"
+                                style="user-select: none; width: 15px; height: 15px; display: inline-block; fill: rgb(135, 135, 135); color: rgb(135, 135, 135); flex-shrink: 0;"
+                                focusable="false" color="rgb(135, 135, 135)">
+                                <g color="rgb(135, 135, 135)" weight="regular">
+                                    <path
+                                        d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a12,12,0,1,1,12,12A12,12,0,0,1,112,84Z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </div> <input type="text" name="" placeholder="1,00,00,000" id="fourth-right-input">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- box 2 -->
+        <h2 class="raw-g" data-aos="fade-up">Raw material</h2>
+        <div id="raw-g" class="raw-materials-calculator" data-aos="fade-up">
+            <div>
+                <div class="second-raw-div" data-aos="fade-up">
+                    <div class="second-raw-left" data-aos="fade-up">
+                        <div class="fifty">
+                            <p>Gross value of import (CIF)</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"
+                                style="user-select: none; width: 15px; height: 15px; display: inline-block; fill: rgb(135, 135, 135); color: rgb(135, 135, 135); flex-shrink: 0;"
+                                focusable="false" color="rgb(135, 135, 135)">
+                                <g color="rgb(135, 135, 135)" weight="regular">
+                                    <path
+                                        d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a12,12,0,1,1,12,12A12,12,0,0,1,112,84Z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </div>
+                        <input type="text" name="" placeholder="1,00,00,000" id="second-raw-left-input">
+                    </div>
+                    <div class="second-raw-right" data-aos="fade-up">
+                        <div class="fifty">
+                            <p>Gross value of applicable BCD</p> <svg xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 256 256"
+                                style="user-select: none; width: 15px; height: 15px; display: inline-block; fill: rgb(135, 135, 135); color: rgb(135, 135, 135); flex-shrink: 0;"
+                                focusable="false" color="rgb(135, 135, 135)">
+                                <g color="rgb(135, 135, 135)" weight="regular">
+                                    <path
+                                        d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a12,12,0,1,1,12,12A12,12,0,0,1,112,84Z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </div> <input type="text" name="" placeholder="1,00,00,000" id="second-raw-right-input">
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <div class="third-raw-div">
+                    <div class="third-raw-left" data-aos="fade-up">
+                        <div class="fifty">
+                            <p>Gross value of AIDC</p> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"
+                                style="user-select: none; width: 15px; height: 15px; display: inline-block; fill: rgb(135, 135, 135); color: rgb(135, 135, 135); flex-shrink: 0;"
+                                focusable="false" color="rgb(135, 135, 135)">
+                                <g color="rgb(135, 135, 135)" weight="regular">
+                                    <path
+                                        d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a12,12,0,1,1,12,12A12,12,0,0,1,112,84Z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </div> <input type="text" name="" placeholder="1,00,00,000" id="third-raw-left-input">
+                    </div>
+                    <div class="third-raw-right" data-aos="fade-up">
+                        <div class="fifty">
+                            <p>Gross value of ADD</p> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"
+                                style="user-select: none; width: 15px; height: 15px; display: inline-block; fill: rgb(135, 135, 135); color: rgb(135, 135, 135); flex-shrink: 0;"
+                                focusable="false" color="rgb(135, 135, 135)">
+                                <g color="rgb(135, 135, 135)" weight="regular">
+                                    <path
+                                        d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a12,12,0,1,1,12,12A12,12,0,0,1,112,84Z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </div> <input type="text" name="" placeholder="1,00,00,000" id="third-raw-right-input">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="fourth-raw-div">
+                    <div class="fourth-raw-left" data-aos="fade-up">
+                        <div class="fifty">
+                            <p>Gross value of IGST</p> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"
+                                style="user-select: none; width: 15px; height: 15px; display: inline-block; fill: rgb(135, 135, 135); color: rgb(135, 135, 135); flex-shrink: 0;"
+                                focusable="false" color="rgb(135, 135, 135)">
+                                <g color="rgb(135, 135, 135)" weight="regular">
+                                    <path
+                                        d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a12,12,0,1,1,12,12A12,12,0,0,1,112,84Z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </div> <input type="text" name="" placeholder="1,00,00,000" id="fourth-raw-left-input">
+                    </div>
+                    <div class="fourth-raw-right" data-aos="fade-up">
+                        <div class="fifty">
+                            <p>Raw material (turnaround time) in day</p> <svg xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 256 256"
+                                style="user-select: none; width: 15px; height: 15px; display: inline-block; fill: rgb(135, 135, 135); color: rgb(135, 135, 135); flex-shrink: 0;"
+                                focusable="false" color="rgb(135, 135, 135)">
+                                <g color="rgb(135, 135, 135)" weight="regular">
+                                    <path
+                                        d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a12,12,0,1,1,12,12A12,12,0,0,1,112,84Z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </div> <input type="text" name="" placeholder="1,00,00,000" id="fourth-raw-right-input">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- box 3 -->
+        <h2 class="indi-g" data-aos="fade-up">Individual Calculator</h2>
+        <div id="indi-g" class="individual-calculator">
+            <table id="capitalGoodsTable" data-aos="fade-up">
+                <thead>
+                    <tr>
+                        <th>Percentage</th>
+                        <th>Value</th>
+                        <th>AIDC</th>
+                        <th id="addColumnBtn">+</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><label><input type="checkbox" name="percentage" onclick="enableInputs(this, 0)">
+                                2.5%</label></td>
+                        <td><input type="text" disabled></td>
+                        <td><input type="text" disabled></td>
+                    </tr>
+                    <tr>
+                        <td><label><input type="checkbox" name="percentage" onclick="enableInputs(this, 1)">
+                                5.0%</label></td>
+                        <td><input type="text" disabled></td>
+                        <td><input type="text" disabled></td>
+                    </tr>
+                    <tr>
+                        <td><label><input type="checkbox" name="percentage" onclick="enableInputs(this, 2)"> 10%</label>
+                        </td>
+                        <td><input type="text" disabled></td>
+                        <td><input type="text" disabled></td>
+                    </tr>
+                    <tr>
+                        <td><label><input type="checkbox" name="percentage" onclick="enableInputs(this, 3)"> 15%</label>
+                        </td>
+                        <td><input type="text" disabled></td>
+                        <td><input type="text" disabled></td>
+                    </tr>
+                    <tr>
+                        <td><label><input type="checkbox" name="percentage" onclick="enableInputs(this, 4)"> 20%</label>
+                        </td>
+                        <td><input type="text" disabled></td>
+                        <td><input type="text" disabled></td>
+                    </tr>
+                    <tr>
+                        <td><label><input type="checkbox" name="percentage" onclick="enableInputs(this, 5)"> 25%</label>
+                        </td>
+                        <td><input type="text" disabled></td>
+                        <td><input type="text" disabled></td>
+                    </tr>
+                    <tr>
+                        <td><label><input type="checkbox" name="percentage" onclick="enableInputs(this, 6)">
+                                Others</label></td>
+                        <td><input type="text" disabled></td>
+                        <td><input type="text" disabled></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <button id="calculate" class="calculate-btn">Calculate</button>
+        </div>
+    </div>
+    </div>
+    <div class="drb">
+        <button id="report-download-btn" class="animated-btn">Download Report</button>
+    </div>
+    <div class="faq">
+        <a href="/need-help.html">Need Help?</a>
+        <a href="/faq.html">FAQs</a>
+    </div>
+    <!-- Download Report Button -->
+
+
+    <!-- Custom Feedback Modal -->
+    <div id="custom-feedback-modal" class="modal-container">
+        <div class="modal-box">
+            <span id="modal-close-btn" class="close-icon">&times;</span>
+            <h2 class="modal-title">We Value Your Feedback!</h2>
+
+            <!-- Feedback Form -->
+            <form id="feedback-form">
+                <div class="form-group">
+                    <label for="user-email" class="form-label">Your Email</label>
+                    <input type="email" id="user-email" name="user-email" class="form-input"
+                        placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="user-feedback" class="form-label">How did you like the MOOWR Utility feature?</label>
+                    <textarea id="user-feedback" name="user-feedback" class="form-input" rows="4"
+                        placeholder="Share your feedback..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="newsletter-opt-in" class="form-label">Subscribe to our Newsletter?</label>
+                    <input type="checkbox" id="newsletter-opt-in" name="newsletter-opt-in" class="form-checkbox"> Yes, I
+                    want to stay updated!
+                </div>
+
+                <button type="submit" class="submit-btn">Submit & Download Report</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script>
+        document.getElementById('calculate').addEventListener('click',()=>{
+            var element = document.getElementsByClassName('drb')[0];
+            element.classList.toggle('show');
+        })
+        // Trigger modal on button click
+        document.getElementById("report-download-btn").addEventListener("click", function () {
+            document.getElementById("custom-feedback-modal").style.display = "block";
+        });
+
+        // Close modal when user clicks on close icon
+        document.getElementById("modal-close-btn").addEventListener("click", function () {
+            document.getElementById("custom-feedback-modal").style.display = "none";
+        });
+
+        // Close modal if user clicks outside of modal box
+        window.addEventListener("click", function (event) {
+            if (event.target == document.getElementById("custom-feedback-modal")) {
+                document.getElementById("custom-feedback-modal").style.display = "none";
+            }
+        });
+
+        // Form submission handler
+        document.getElementById("feedback-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            // Collect email, feedback, and newsletter opt-in data
+            const email = document.getElementById("user-email").value;
+            const feedback = document.getElementById("user-feedback").value;
+            const newsletterOptIn = document.getElementById("newsletter-opt-in").checked;
+
+            // TODO: Handle form data submission via AJAX to backend, or use WordPress API
+
+            // Hide the modal after form submission
+            document.getElementById("custom-feedback-modal").style.display = "none";
+
+            // Proceed to download the report
+            alert("Thank you for your feedback! Your download will start shortly.");
+        });
+        window.onload = function () {
+            // Select the form by its ID
+            const form = document.getElementById('feedback-form');
+            const inputs = document.querySelectorAll('input');
+            inputs.forEach(function (input) {
+                input.value = '';
+            });
+
+            // Clear textarea fields as well, if any
+            const textareas = document.querySelectorAll('textarea');
+            textareas.forEach(function (textarea) {
+                textarea.value = '';
+            });
+            // Reset all form input fields
+            form.reset();
+        };
+    </script>
+</body>
+
+</html>
